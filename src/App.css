@@ -1,4 +1,340 @@
-/* 컴포넌트를 감싸는 기본 카드 스타일 */
+/* App의 전체적인 레이아웃을 중앙 정렬합니다. */
+
+.App {
+  text-align: center; /* 텍스트를 중앙으로 정렬합니다. */
+
+  padding: 40px; /* 화면 안쪽 여백을 40px 줍니다. */
+
+  background-color: #f8f9fa; /* 배경색을 아주 연한 회색으로 설정합니다. */
+
+  min-height: 100vh; /* 앱의 최소 높이를 화면 전체 높이로 설정합니다. */
+}
+
+/* 할 일 목록을 감싸는 메인 박스 스타일입니다. */
+
+.todo-container {
+  background: white; /* 박스 배경색은 흰색입니다. */
+
+  width: 100%; /* 박스 너비를 100%로 잡되... */
+
+  max-width: 400px; /* 최대 너비는 400px까지만 커지게 제한합니다. */
+
+  margin: 0 auto; /* 중앙에 배치하기 위해 양옆 마진을 자동으로 설정합니다. */
+
+  padding: 30px; /* 박스 안쪽 여백을 30px 줍니다. */
+
+  border-radius: 12px; /* 모서리를 12px만큼 둥글게 깎습니다. */
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* 박스 아래에 은은한 그림자를 넣습니다. */
+}
+
+.todo-container h2 {
+  color: #333;
+}
+
+/* 입력창과 추가 버튼을 나란히 배치하기 위한 그룹 스타일입니다. */
+
+.input-group {
+  display: flex; /* 요소들을 가로로 나란히 배치합니다. */
+
+  gap: 10px; /* 입력창과 버튼 사이의 간격을 10px 줍니다. */
+
+  margin-bottom: 20px; /* 아래쪽 목록과의 간격을 20px 띄웁니다. */
+}
+
+/* 텍스트를 입력하는 input 태그의 스타일입니다. */
+
+.todo-input {
+  flex: 1; /* 가로 공간을 남김없이 모두 차지하도록 확장합니다. */
+
+  padding: 10px 15px; /* 안쪽 여백(위아래 10px, 좌우 15px)을 줍니다. */
+
+  border: 1px solid #ced4da; /* 1px 두께의 옅은 회색 테두리를 그립니다. */
+
+  border-radius: 6px; /* 테두리 모서리를 6px 둥글게 만듭니다. */
+
+  font-size: 1rem; /* 글자 크기를 기본 1rem으로 설정합니다. */
+
+  outline: none; /* 클릭했을 때 생기는 기본 파란색 테두리를 없앱니다. */
+}
+
+/* 할 일을 추가하는 버튼의 스타일입니다. */
+
+.add-btn {
+  padding: 10px 20px; /* 위아래 10px, 좌우 20px의 여백을 줍니다. */
+
+  background-color: #28a781; /* 배경색을 초록색으로 설정합니다. */
+
+  color: white; /* 글자색을 흰색으로 만듭니다. */
+
+  border: none; /* 기본 테두리를 없앱니다. */
+
+  border-radius: 6px; /* 모서리를 6px 둥글게 만듭니다. */
+
+  cursor: pointer; /* 마우스를 올리면 손가락 모양으로 바꿉니다. */
+
+  font-weight: bold; /* 글자 굵기를 굵게 만듭니다. */
+}
+
+/* <ul> 태그인 할 일 목록 컨테이너입니다. */
+
+.todo-list {
+  list-style: none; /* 목록 앞의 기본 점(bullet)을 없앱니다. */
+
+  padding: 0; /* 기본으로 들어가는 왼쪽 여백을 0으로 없앱니다. */
+
+  margin: 0; /* 기본 위아래 마진을 0으로 없앱니다. */
+}
+
+/* 각 할 일 항목(<li> 태그)의 스타일입니다. */
+
+.todo-item {
+  display: flex; /* 텍스트와 삭제 버튼을 가로로 나란히 배치합니다. */
+
+  justify-content: space-between; /* 양쪽 끝으로 요소를 밀어내어 배치합니다. */
+
+  align-items: center; /* 세로 중앙을 맞춥니다. */
+
+  padding: 12px 15px; /* 안쪽 여백을 설정합니다. */
+
+  background-color: #f8f9fa; /* 항목의 배경색을 연한 회색으로 칠합니다. */
+
+  margin-bottom: 8px; /* 아래 항목과의 간격을 8px 둡니다. */
+
+  border-radius: 6px; /* 항목의 모서리를 둥글게 만듭니다. */
+}
+
+/* 항목 내의 텍스트 영역 스타일입니다. */
+
+.todo-text {
+  font-size: 1rem; /* 글자 크기를 1rem으로 설정합니다. */
+
+  color: #333; /* 글자색을 짙은 회색으로 칠합니다. */
+}
+
+/* 할 일을 삭제하는 버튼의 스타일입니다. */
+
+.delete-btn {
+  padding: 6px 12px; /* 버튼의 안쪽 크기를 작게 조절합니다. */
+
+  background-color: #b91b84; /* 배경색을 빨간색으로 설정합니다. */
+
+  color: white; /* 글자색을 흰색으로 지정합니다. */
+
+  border: none; /* 기본 테두리를 제거합니다. */
+
+  border-radius: 4px; /* 버튼 모서리를 4px 둥글게 만듭니다. */
+
+  cursor: pointer; /* 마우스 커서를 손가락으로 바꿉니다. */
+
+  font-size: 0.85rem; /* 글자 크기를 조금 작게 설정합니다. */
+}
+
+/*--------------------------------------------------------------------*/
+/* 상태에 따라 변화하는 색상 값과 부드러운 전환 효과를 설정합니다.
+
+CSS */
+
+/* 앱 전체의 기본 정렬과 높이 설정 */
+
+/* .App {
+  text-align: center;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  padding: 50px;
+
+  background-color: #f5f5f5; /* 앱 배경은 연한 회색 */
+/* }  */
+
+/* 텍스트가 표시될 박스의 공통 스타일 */
+
+/* .theme-box {
+  width: 400px;
+
+  padding: 60px;
+
+  border-radius: 20px;
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 입체감을 위한 그림자 */
+
+/* transition: all 0.3s ease; 배경색과 글자색이 바뀔 때 0.3초 동안 부드럽게 전환 */
+/*} */
+
+/* --- 라이트 모드일 때의 스타일 --- */
+
+/* .light-mode {
+  background-color: #ffffff; /* 하얀색 배경 */
+
+/* color: #333333; 짙은 회색 글자 */
+/*} */
+
+/* --- 다크 모드일 때의 스타일 --- */
+
+/* .dark-mode {
+  background-color: #2c3e50; 어두운 남색 배경
+
+  color: #ecf0f1; 밝은 백색 글자
+}
+
+/* 토글 버튼 스타일 */
+
+/* .toggle-btn {
+  margin-top: 20px;
+
+  padding: 12px 24px;
+
+  font-size: 1rem;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  border: 2px solid transparent;
+
+  border-radius: 30px;
+
+  background-color: #3498db; 시원한 파란색 버튼
+
+  color: white;
+
+  transition: transform 0.1s; 클릭 시 눌리는 느낌을 위한 전환
+} */
+
+/* 버튼 위에 마우스를 올렸을 때
+
+.toggle-btn:hover {
+  background-color: #2980b9; 조금 더 진한 파란색
+}
+
+/* 버튼을 클릭하고 있을 때 살짝 작아지는 효과 */
+
+/* .toggle-btn:active {
+  transform: scale(0.95);
+} */
+
+/*------------------------------------------------------------------*/
+
+/* 전체 앱의 중앙 정렬과 배경색 설정 */
+/* .App {
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  padding: 20px;
+} */
+
+/* 상단 헤더 스타일 */
+/* .App-header {
+  margin-bottom: 50px;
+  color: #333;
+} */
+
+/* 카운터 본체 박스 스타일 */
+/* .counter-container {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+/*display: inline-block; /* 내용물 크기에 맞게 조절 */
+/*} */
+
+/* 숫자가 표시되는 부분의 스타일 */
+/* .count-display {
+  font-size: 5rem;
+  margin: 20px 0;
+  color: #007bff; /* 파란색으로 강조 */
+/*} */
+
+/* 버튼들을 감싸는 그룹 스타일 */
+/* .button-group {
+  display: flex;
+  gap: 10px; /* 버튼 사이 간격 */
+/* justify-content: center; */
+/* } */
+
+/* 공통 버튼 스타일 */
+/* button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: white;
+  transition: background-color 0.2s; 부드러운 색상 변화 */
+/* } */
+
+/* 버튼에 마우스를 올렸을 때의 효과 */
+/* button:hover {
+  background-color: #555;
+} */
+
+/* 초기화 버튼만 다른 색상으로 강조 */
+/* button:nth-child(2) {
+  background-color: #dc3545;
+} */
+
+/* button:nth-child(2):hover {
+  background-color: #c82333;
+} */
+/*--------------------------------------------------------------------------*/
+/* ​ 기본 텍스트 스타일  */
+/* .message-text {
+  font-size: 2rem;
+
+  transition: color 0.3s ease; /* 색상이 부드럽게 변하도록 설정 */
+/*} */
+
+/* 상태에 따른 색상 클래스 */
+
+/* .red-text {
+  color: red;
+}
+
+.green-text {
+  color: green;
+}
+
+.black-text {
+  color: black;
+} */
+
+/* 버튼 공통 스타일 */
+
+/* .btn {
+  margin: 5px;
+
+  padding: 10px 20px;
+
+  cursor: pointer;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 4px;
+} */
+
+/* 버튼별 배경색 */
+
+/* .btn-red {
+  background-color: red;
+}
+
+.btn-green {
+  background-color: green;
+} */
+
+/* ----------------------------------------------- */
+
+/* 컴포넌트를 감싸는 기본 카드 스타일
 .card-container {
   border: 2px solid #ddd;
   border-radius: 12px;
@@ -10,25 +346,25 @@
 }
 
 /* 프로필 이미지 스타일 */
-.profile-img {
+/*.profile-img {
   width: 100%;
   height: auto;
   border-radius: 8px;
   margin-bottom: 15px;
-}
+}*/
 
 /* 제목 스타일 */
-.card-title {
+/*.card-title {
   font-size: 1.25rem;
   color: #333;
   margin-bottom: 10px;
-}
+}*/
 
 /* children이 들어갈 콘텐츠 영역 */
-.card-content {
+/*.card-content {
   font-size: 0.95rem;
   color: #666;
   line-height: 1.5;
   border-top: 1px solid #eee;
   padding-top: 10px;
-}
+} */
