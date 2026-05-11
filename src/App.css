@@ -1,134 +1,328 @@
-/* App의 전체적인 레이아웃을 중앙 정렬합니다. */
+/* 진척도를 막대그래프로 표시하기 */
+
+/* 앱 전체의 배경색과 텍스트 정렬 설정 */
 
 .App {
-  text-align: center; /* 텍스트를 중앙으로 정렬합니다. */
+  text-align: center; /* 모든 텍스트를 중앙 정렬한다. */
 
-  padding: 40px; /* 화면 안쪽 여백을 40px 줍니다. */
+  background-color: #f0f4f8; /* 배경을 연한 하늘색 계열로 설정한다. */
 
-  background-color: #f8f9fa; /* 배경색을 아주 연한 회색으로 설정합니다. */
+  min-height: 100vh; /* 화면의 전체 높이를 차지하도록 한다. */
 
-  min-height: 100vh; /* 앱의 최소 높이를 화면 전체 높이로 설정합니다. */
+  padding: 40px; /* 사방에 40px의 여백을 준다. */
 }
+
+/* 상단 제목 스타일 */
+
+.App-header h1 {
+  color: #2d3748; /* 제목의 글자색을 짙은 회색으로 정한다. */
+
+  margin-bottom: 30px; /* 아래쪽 요소와 간격을 둔다. */
+}
+
+/* 카운터가 담긴 카드 형태의 박스 스타일 */
+
+.counter-card {
+  background: white; /* 박스 배경은 하얀색으로 설정한다. */
+
+  max-width: 500px; /* 박스의 최대 너비를 500px로 제한한다. */
+
+  margin: 0 auto; /* 가로 중앙에 배치한다. */
+
+  padding: 25px; /* 박스 내부의 여백을 25px 준다. */
+
+  border-radius: 12px; /* 모서리를 부드럽게 깎는다. */
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 입체감을 위해 부드러운 그림자를 넣는다. */
+}
+
+.counter-card h2 {
+  color: #2d3748;
+}
+
+/* 텍스트 입력 영역(textarea) 스타일 */
+
+.text-input {
+  width: 100%; /* 너비를 부모 박스에 맞춘다. */
+
+  height: 150px; /* 높이를 150px로 고정한다. */
+
+  padding: 15px; /* 입력창 내부 여백을 준다. */
+
+  border: 2px solid #e2e8f0; /* 기본 테두리를 연한 회색으로 그린다. */
+
+  border-radius: 8px; /* 테두리 모서리를 둥글게 만든다. */
+
+  font-size: 1rem; /* 글자 크기를 기본 크기로 설정한다. */
+
+  resize: none; /* 사용자가 임의로 크기를 조절하지 못하게 막는다. */
+
+  box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정한다. */
+
+  transition: border-color 0.2s; /* 테두리 색상이 바뀔 때 부드럽게 변하게 한다. */
+}
+
+/* 글자 수 초과 시 입력창에 적용될 에러 스타일 */
+
+.input-error {
+  border-color: #f56565; /* 테두리 색을 빨간색으로 바꾼다. */
+
+  background-color: #fff5f5; /* 배경색을 아주 연한 분홍색으로 바꾼다. */
+}
+
+/* 진척도 바의 배경(트랙) 역할을 하는 컨테이너 */
+
+.progress-container {
+  width: 100%;
+
+  height: 8px; /* 바의 두께 */
+
+  background-color: #edf2f7; /* 옅은 회색 배경 */
+
+  border-radius: 4px;
+
+  margin-top: 10px;
+
+  overflow: hidden; /* 내부 바가 컨테이너를 벗어나지 않도록 숨김 처리 */
+}
+
+/* 실제 진척도를 보여주는 색상 바 */
+
+.progress-bar {
+  height: 100%;
+
+  background-color: #4299e1; /* 기본 파란색 */
+
+  border-radius: 4px;
+
+  transition:
+    width 0.3s ease,
+    background-color 0.3s ease; /* 너비와 색상 변경 시 애니메이션 효과 */
+}
+
+/* 글자 수 초과 시 진척도 바의 색상 변경 */
+
+.progress-error {
+  background-color: #e53e3e; /* 경고를 의미하는 빨간색 */
+}
+
+/* 글자 수 정보와 경고 메시지를 담는 영역 */
+
+.status-bar {
+  display: flex; /* 가로로 나란히 배치한다. */
+
+  justify-content: space-between; /* 양 끝으로 밀어서 배치한다. */
+
+  align-items: center; /* 세로 중앙을 맞춘다. */
+
+  margin: 15px 0; /* 위아래 간격을 15px 준다. */
+}
+
+/* 텍스트 정보들을 묶는 컨테이너 (정렬용) */
+
+.count-info {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+}
+
+/* 기본 글자 수 텍스트 스타일 */
+
+.count-text {
+  margin: 0;
+
+  color: #4a5568;
+}
+
+/* 글자 수 초과 시 숫자에 적용될 스타일 */
+
+.limit-reached {
+  color: #e53e3e; /* 글자색을 빨간색으로 강조한다. */
+
+  font-weight: bold; /* 글씨를 굵게 만든다. */
+}
+
+/* 공백 제외 글자 수를 보여주는 작은 텍스트 스타일 */
+
+.count-text-small {
+  margin: 4px 0 0 0;
+
+  font-size: 0.8rem;
+
+  color: #718096;
+}
+
+/* 빨간색 경고 메시지 스타일 */
+
+.warning-msg {
+  color: #e53e3e;
+
+  font-size: 0.85rem;
+
+  font-weight: bold;
+}
+
+/* 초기화 버튼 스타일 */
+
+.clear-btn {
+  width: 100%; /* 버튼 너비를 꽉 채운다. */
+
+  padding: 10px;
+
+  background-color: #edf2f7; /* 배경을 연한 회색으로 설정한다. */
+
+  border: none;
+
+  border-radius: 6px;
+
+  cursor: pointer; /* 마우스를 올리면 손가락 모양이 되게 한다. */
+
+  color: #4a5568;
+
+  font-weight: 600;
+
+  transition: background 0.2s; /* 배경색 변화를 부드럽게 한다. */
+}
+
+/* 초기화 버튼에 마우스를 올렸을 때 */
+
+.clear-btn:hover {
+  background-color: #e2e8f0; /* 배경색을 조금 더 진하게 바꾼다. */
+}
+
+/* App의 전체적인 레이아웃을 중앙 정렬합니다. -------------------------------------------*/
+
+/* .App {
+  text-align: center; 텍스트를 중앙으로 정렬합니다.
+
+  padding: 40px; 화면 안쪽 여백을 40px 줍니다.
+
+  background-color: #f8f9fa; 배경색을 아주 연한 회색으로 설정합니다.
+
+  min-height: 100vh; 앱의 최소 높이를 화면 전체 높이로 설정합니다.
+} */
 
 /* 할 일 목록을 감싸는 메인 박스 스타일입니다. */
-
+/* 
 .todo-container {
-  background: white; /* 박스 배경색은 흰색입니다. */
+  background: white; 박스 배경색은 흰색입니다.
 
-  width: 100%; /* 박스 너비를 100%로 잡되... */
+  width: 100%; 박스 너비를 100%로 잡되...
 
-  max-width: 400px; /* 최대 너비는 400px까지만 커지게 제한합니다. */
+  max-width: 400px; 최대 너비는 400px까지만 커지게 제한합니다.
 
-  margin: 0 auto; /* 중앙에 배치하기 위해 양옆 마진을 자동으로 설정합니다. */
+  margin: 0 auto; 중앙에 배치하기 위해 양옆 마진을 자동으로 설정합니다.
 
-  padding: 30px; /* 박스 안쪽 여백을 30px 줍니다. */
+  padding: 30px; 박스 안쪽 여백을 30px 줍니다.
 
-  border-radius: 12px; /* 모서리를 12px만큼 둥글게 깎습니다. */
+  border-radius: 12px; 모서리를 12px만큼 둥글게 깎습니다.
 
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* 박스 아래에 은은한 그림자를 넣습니다. */
-}
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); 박스 아래에 은은한 그림자를 넣습니다.
+} */
 
-.todo-container h2 {
+/* .todo-container h2 {
   color: #333;
-}
+} */
 
 /* 입력창과 추가 버튼을 나란히 배치하기 위한 그룹 스타일입니다. */
 
-.input-group {
-  display: flex; /* 요소들을 가로로 나란히 배치합니다. */
+/* .input-group {
+  display: flex; 요소들을 가로로 나란히 배치합니다.
 
-  gap: 10px; /* 입력창과 버튼 사이의 간격을 10px 줍니다. */
+  gap: 10px; 입력창과 버튼 사이의 간격을 10px 줍니다.
 
-  margin-bottom: 20px; /* 아래쪽 목록과의 간격을 20px 띄웁니다. */
-}
+  margin-bottom: 20px; 아래쪽 목록과의 간격을 20px 띄웁니다.
+} */
 
 /* 텍스트를 입력하는 input 태그의 스타일입니다. */
 
-.todo-input {
-  flex: 1; /* 가로 공간을 남김없이 모두 차지하도록 확장합니다. */
+/* .todo-input {
+  flex: 1; 가로 공간을 남김없이 모두 차지하도록 확장합니다.
 
-  padding: 10px 15px; /* 안쪽 여백(위아래 10px, 좌우 15px)을 줍니다. */
+  padding: 10px 15px; 안쪽 여백(위아래 10px, 좌우 15px)을 줍니다.
 
-  border: 1px solid #ced4da; /* 1px 두께의 옅은 회색 테두리를 그립니다. */
+  border: 1px solid #ced4da; 1px 두께의 옅은 회색 테두리를 그립니다.
 
-  border-radius: 6px; /* 테두리 모서리를 6px 둥글게 만듭니다. */
+  border-radius: 6px; 테두리 모서리를 6px 둥글게 만듭니다.
 
-  font-size: 1rem; /* 글자 크기를 기본 1rem으로 설정합니다. */
+  font-size: 1rem; 글자 크기를 기본 1rem으로 설정합니다.
 
-  outline: none; /* 클릭했을 때 생기는 기본 파란색 테두리를 없앱니다. */
-}
+  outline: none; 클릭했을 때 생기는 기본 파란색 테두리를 없앱니다.
+} */
 
 /* 할 일을 추가하는 버튼의 스타일입니다. */
 
-.add-btn {
-  padding: 10px 20px; /* 위아래 10px, 좌우 20px의 여백을 줍니다. */
+/* .add-btn {
+  padding: 10px 20px; 위아래 10px, 좌우 20px의 여백을 줍니다.
 
-  background-color: #28a781; /* 배경색을 초록색으로 설정합니다. */
+  background-color: #28a781; 배경색을 초록색으로 설정합니다.
 
-  color: white; /* 글자색을 흰색으로 만듭니다. */
+  color: white; 글자색을 흰색으로 만듭니다.
 
-  border: none; /* 기본 테두리를 없앱니다. */
+  border: none; 기본 테두리를 없앱니다.
 
-  border-radius: 6px; /* 모서리를 6px 둥글게 만듭니다. */
+  border-radius: 6px; 모서리를 6px 둥글게 만듭니다.
 
-  cursor: pointer; /* 마우스를 올리면 손가락 모양으로 바꿉니다. */
+  cursor: pointer; 마우스를 올리면 손가락 모양으로 바꿉니다.
 
-  font-weight: bold; /* 글자 굵기를 굵게 만듭니다. */
-}
+  font-weight: bold; 글자 굵기를 굵게 만듭니다.
+} */
 
 /* <ul> 태그인 할 일 목록 컨테이너입니다. */
 
-.todo-list {
-  list-style: none; /* 목록 앞의 기본 점(bullet)을 없앱니다. */
+/* .todo-list {
+  list-style: none; 목록 앞의 기본 점(bullet)을 없앱니다.
 
-  padding: 0; /* 기본으로 들어가는 왼쪽 여백을 0으로 없앱니다. */
+  p?adding: 0; 기본으로 들어가는 왼쪽 여백을 0으로 없앱니다.
 
-  margin: 0; /* 기본 위아래 마진을 0으로 없앱니다. */
-}
+  margin: 0; 기본 위아래 마진을 0으로 없앱니다.
+} */
 
 /* 각 할 일 항목(<li> 태그)의 스타일입니다. */
-
+/* 
 .todo-item {
-  display: flex; /* 텍스트와 삭제 버튼을 가로로 나란히 배치합니다. */
+  display: flex; 텍스트와 삭제 버튼을 가로로 나란히 배치합니다.
 
-  justify-content: space-between; /* 양쪽 끝으로 요소를 밀어내어 배치합니다. */
+  justify-content: space-between; 양쪽 끝으로 요소를 밀어내어 배치합니다.
 
-  align-items: center; /* 세로 중앙을 맞춥니다. */
+  align-items: center; 세로 중앙을 맞춥니다.
 
-  padding: 12px 15px; /* 안쪽 여백을 설정합니다. */
+  padding: 12px 15px; 안쪽 여백을 설정합니다.
 
-  background-color: #f8f9fa; /* 항목의 배경색을 연한 회색으로 칠합니다. */
+  background-co/lor: #f8f9fa; 항목의 배경색을 연한 회색으로 칠합니다.
 
-  margin-bottom: 8px; /* 아래 항목과의 간격을 8px 둡니다. */
+  margin-bottom: 8px; 아래 항목과의 간격을 8px 둡니다.
 
-  border-radius: 6px; /* 항목의 모서리를 둥글게 만듭니다. */
-}
+  border-radius: 6px; 항목의 모서리를 둥글게 만듭니다.
+} */
 
 /* 항목 내의 텍스트 영역 스타일입니다. */
 
-.todo-text {
-  font-size: 1rem; /* 글자 크기를 1rem으로 설정합니다. */
+/* .todo-text {
+  font-size: 1rem; 글자 크기를 1rem으로 설정합니다.
 
-  color: #333; /* 글자색을 짙은 회색으로 칠합니다. */
-}
+  color: #333; 글자색을 짙은 회색으로 칠합니다.
+} */
 
 /* 할 일을 삭제하는 버튼의 스타일입니다. */
 
-.delete-btn {
-  padding: 6px 12px; /* 버튼의 안쪽 크기를 작게 조절합니다. */
+/* .delete-btn {
+  padding: 6px 12px; 버튼의 안쪽 크기를 작게 조절합니다.
 
-  background-color: #b91b84; /* 배경색을 빨간색으로 설정합니다. */
+  background-color: #b91b84; 배경색을 빨간색으로 설정합니다.
 
-  color: white; /* 글자색을 흰색으로 지정합니다. */
+  color: white; 글자색을 흰색으로 지정합니다.
 
-  border: none; /* 기본 테두리를 제거합니다. */
+  border: none; 기본 테두리를 제거합니다.
 
-  border-radius: 4px; /* 버튼 모서리를 4px 둥글게 만듭니다. */
+  border-radius: 4px; 버튼 모서리를 4px 둥글게 만듭니다.
 
-  cursor: pointer; /* 마우스 커서를 손가락으로 바꿉니다. */
+  cursor: pointer; 마우스 커서를 손가락으로 바꿉니다.
 
-  font-size: 0.85rem; /* 글자 크기를 조금 작게 설정합니다. */
-}
+  font-size: 0.85rem; 글자 크기를 조금 작게 설정합니다.
+} */
 
 /*--------------------------------------------------------------------*/
 /* 상태에 따라 변화하는 색상 값과 부드러운 전환 효과를 설정합니다.

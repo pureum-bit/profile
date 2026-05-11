@@ -1,18 +1,81 @@
-//목록을 저장하는 목록------------------------------------------------------------
+//입력 상태를 실시간으로 인지하자-----------------------------------------------------------------
 
-import React from 'react';
-import TodoList from './TodoList';
-import './App.css';
+import InpuMirror from './InpuMirror';
+import './InpuMirror.css';
 
 const App = () => {
   return (
     <>
-      <TodoList />
+      <InpuMirror />
     </>
   );
 };
 
 export default App;
+
+//명언 생성----------------------------------------------------------
+
+// import RandomQuote from './RandomQuote';
+// import './RandomQuote.css';
+
+// const App = () => {
+//   return <RandomQuote />;
+// };
+
+// export default App;
+
+//Qna 제미나이(AI)--------------------------------------------------
+
+// import QuoteGenerator from './QuoteGenerator';
+// import './QuoteGenerator.css';
+
+// const App = () => {
+//   return <QuoteGenerator />;
+// };
+
+// export default App;
+
+//Qna----------------------------------------------------------
+
+// import Accordion from './Accordion';
+// import './Accordion.css';
+
+// const App = () => {
+//   return <Accordion />;
+// };
+
+// export default App;
+
+//글자 수 제한하기--------------------------------------------------------
+
+// import CharacterCounter from './CharacterCounter';
+// import './App.css';
+
+// const App = () => {
+//   return (
+//     <div>
+//       <CharacterCounter />
+//     </div>
+//   );
+// };
+
+// export default App;
+
+//목록을 저장하는 목록------------------------------------------------------------
+
+// import React from 'react';
+// import TodoList from './TodoList';
+// import './App.css';
+
+// const App = () => {
+//   return (
+//     <>
+//       <TodoList />
+//     </>
+//   );
+// };
+
+// export default App;
 
 //다크모드--------------------------------------------------
 
